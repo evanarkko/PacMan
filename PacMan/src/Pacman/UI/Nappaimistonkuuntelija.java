@@ -15,15 +15,15 @@ import java.awt.event.KeyListener;
  *
  * @author eamiller
  */
-public class Nappaimistonkuuntelija implements KeyListener{
+public class Nappaimistonkuuntelija implements KeyListener {
+
     private Pacman pacman;
     private Component component;
 
     public Nappaimistonkuuntelija(Pacman pacman) {
         this.pacman = pacman;
     }
-    
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -31,7 +31,7 @@ public class Nappaimistonkuuntelija implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             pacman.setSuunta(Suunta.VASEN);
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -45,7 +45,15 @@ public class Nappaimistonkuuntelija implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            pacman.setSuunta(Suunta.VASEN);
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            pacman.setSuunta(Suunta.OIKEA);
+        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            pacman.setSuunta(Suunta.YLOS);
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            pacman.setSuunta(Suunta.ALAS);
+        }
     }
-    
+
 }
