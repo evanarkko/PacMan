@@ -35,7 +35,7 @@ public class Kayttoliittyma implements Runnable{
         luoKomponentit(frame.getContentPane());
 
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(true); 
     }
 
     private void luoKomponentit(Container container) {

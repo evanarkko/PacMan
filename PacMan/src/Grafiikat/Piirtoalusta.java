@@ -1,9 +1,20 @@
 package Grafiikat;
 
+import java.awt.Color;
+import java.awt.Font;
+import pacman.pelioliot.Pacman;
+import pacman.pelioliot.Hahmo;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import pacman.main.Pelaaja;
+import pacman.pelioliot.Aalto;
+import pacman.pelioliot.pisteet.IsoPistePallo;
+import pacman.pelioliot.Miina;
+import pacman.pelioliot.pisteet.PistePallo;
+import pacman.pelioliot.Seina;
+import pacman.pelioliot.Suunta;
+import pacman.pelioliot.Vihollinen;
 
 /**
  *
@@ -11,13 +22,44 @@ import pacman.main.Pelaaja;
  */
 public class Piirtoalusta extends JPanel {
 
+    private boolean paused;
+    private boolean gameOver;
+    private int level;
     private Pacman pacman;
     private Pelaaja pelaaja;
-    private ArrayList<Hahmo> hahmot;
+    private ArrayList<PistePallo> pistepallot;
+    private ArrayList<Vihollinen> viholliset;
+    private ArrayList<Hahmo> seinat;
+    private ArrayList<Hahmo> aallot;
+    private ArrayList<Hahmo> elamat;
+    private ArrayList<Miina> miinat;
+    private IsoPistePallo elamapallo;
 
     public Piirtoalusta() {
-        hahmot = new ArrayList<Hahmo>();
+        viholliset = new ArrayList<Vihollinen>();
+        pistepallot = new ArrayList<>();
+        this.seinat = new ArrayList<Hahmo>();
+        this.aallot = new ArrayList<Hahmo>();
+        this.elamat = new ArrayList<Hahmo>();
+        this.miinat = new ArrayList<>();
+        gameOver = false;
+        paused = false;
         pelaaja = null;
+        elamapallo = null;
+    }
+
+    public void setElamapallo(IsoPistePallo elamapallo) {
+        this.elamapallo = elamapallo;
+    }
+
+    public IsoPistePallo getElamapallo() {
+        return elamapallo;
+    }
+    
+    
+
+    public void lisaaSeina(Seina seina) {
+        seinat.add(seina);
     }
 
     public void lisaaPacman(Pacman p) {
@@ -25,54 +67,124 @@ public class Piirtoalusta extends JPanel {
 
     }
 
-    public void lisaaHahmo(Hahmo h) {
-        hahmot.add(h);
+    public void lisaaMiina(Miina miina) {
+        if (this.miinat.size() < 5) {
+            this.miinat.add(miina);
+        }
     }
 
-    public void pacmanEhkaSyo() {
-        boolean loydettiin = false;
-        int apu = 0;
-        int index = 0;
-        for (Hahmo h : hahmot) {
-            if (hahmotKoskettavat(pacman, h)) {
-                index = apu;
-                loydettiin = true;
-                h.setMaalataan(false);
-                pelaaja.lisaaPisteita(5);
-            } else {
-                apu++;
-            }
-        }
-        if (loydettiin) {
-            hahmot.remove(index);
-        }
-
+    public ArrayList<Miina> getMiinat() {
+        return miinat;
     }
 
-    private boolean hahmotKoskettavat(Hahmo h1, Hahmo h2) {
+    public void lisaaVihollinen(Vihollinen h) {
+        viholliset.add(h);
+    }
 
-        if (h2.getX() - 25 < h1.getX() && h1.getX() < h2.getX() + 30) {
-            if (h2.getY() - 35 < h1.getY() && h1.getY() < h2.getY() + 25) {
-                return true;
-            }
-        }
+    public void lisaaPistepallo(PistePallo h) {
+        pistepallot.add(h);
+    }
 
-        return false;
+    public ArrayList<Vihollinen> getViholliset() {
+        return viholliset;
+    }
+
+    public ArrayList<Hahmo> getAallot() {
+        return aallot;
+    }
+
+    public ArrayList<PistePallo> getPistepallot() {
+        return pistepallot;
+    }
+
+    public Pelaaja getPelaaja1() {
+        return pelaaja;
+    }
+
+    public Pacman getPacman() {
+        return pacman;
+    }
+
+    public ArrayList<Hahmo> getSeinat() {
+        return seinat;
     }
 
     public void setPelaaja(Pelaaja pelaaja) {
         this.pelaaja = pelaaja;
     }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        for (Hahmo hahmo : hahmot) {
-            hahmo.luo(g);
+        if (!paused) {
+            super.paintComponent(g);
+            g.setColor(new Color(75,0,130));
+//            g.fillRect(0, 0, 1310, 730);
+
+            for (Hahmo hahmo : pistepallot) {
+                hahmo.luo(g);
+            }
+            for (Hahmo e : elamat) {
+                e.luo(g);
+            }
+            this.pacman.luo(g);
+            for (Hahmo v : viholliset) {
+                v.luo(g);
+            }
+            for (Hahmo seina : seinat) {
+                seina.luo(g);
+            }
+            for (Hahmo m : miinat) {
+                m.luo(g);
+            }
+            for (Hahmo luoti : aallot) {
+                luoti.luo(g);
+                luoti.liiku();
+            }
+            if (pelaaja != null) {
+                pelaaja.luoNakyma(g);
+            }
+
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+            g.setColor(new Color(230, 150, 0, 80));
+            g.fill3DRect(540, 615, 200, 100, true);
+            g.setColor(Color.black);
+            g.drawString("Level: " + this.level, 580, 660);
+
+            if (gameOver) {
+                displayGameOver(g);
+            }
         }
-        this.pacman.luo(g);
-        if (pelaaja != null) {
-            pelaaja.luoNakyma(g);
-        }
+
+    }
+
+    public void displayPause(Graphics g) {
+        g.setColor(Color.blue);
+        g.drawString("Pause", 340, 350);
+    }
+
+    private void displayGameOver(Graphics g) {
+        g.setFont(new Font("TimesRoman", Font.BOLD, 100));
+        g.setColor(Color.PINK);
+        g.drawString("GAME OVER", 300, 330);
+    }
+
+    public void PacmanAmpuu() {
+        this.aallot.add(new Aalto(pacman.getX(), pacman.getY(), pacman.getSuunta()));
     }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Grafiikat;
+package pacman.pelioliot;
 
 import java.awt.Graphics;
 
@@ -13,18 +13,35 @@ import java.awt.Graphics;
  */
 public abstract class Hahmo {
 
-    int x;
-    int y;
+    public int x;
+    public int y;
     int maX = 1310;
     int maxY = 730;
-    private Suunta suunta;
+    Suunta suunta;
     boolean maalataan = true;
+
+    public Hahmo(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.suunta = Suunta.VASEN;
+    }
     
-    
+    public void setSuunta(Suunta suunta) {
+        this.suunta = suunta;
+    }
 
     public void luo(Graphics g) {
 
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+    
     
     
 

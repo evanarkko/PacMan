@@ -5,11 +5,13 @@
  */
 package Pacman.UI;
 
-import Grafiikat.Pacman;
-import Grafiikat.Suunta;
+import Grafiikat.Piirtoalusta;
+import pacman.pelioliot.Pacman;
+import pacman.pelioliot.Suunta;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import pacman.pelioliot.Miina;
 
 /**
  *
@@ -17,20 +19,31 @@ import java.awt.event.KeyListener;
  */
 public class Nappaimistonkuuntelija implements KeyListener {
 
+    private Piirtoalusta piirtoalusta;
     private Pacman pacman;
     private Component component;
 
-    public Nappaimistonkuuntelija(Pacman pacman) {
+    public Nappaimistonkuuntelija(Pacman pacman, Piirtoalusta piirtoalusta) {
         this.pacman = pacman;
+        this.piirtoalusta = piirtoalusta;
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (e.getKeyChar() == 'x') {
+            piirtoalusta.PacmanAmpuu();
+        }
+        if (e.getKeyChar() == 'z') {
+            piirtoalusta.lisaaMiina(new Miina(piirtoalusta.getPacman().getX(), piirtoalusta.getPacman().getY()));
+        }
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if (e.getKeyChar() == 'x') {
+            piirtoalusta.PacmanAmpuu();
+        }
 
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             pacman.setSuunta(Suunta.VASEN);
