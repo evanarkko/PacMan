@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="missingVariables"
+                     displayName="missingVariables"
+                     projectFiles="true"
+                     root="../../../Downloads/Week1/missingVariables">
+        <logicalFolder name="src" displayName="src" projectFiles="true">
+          <itemPath>../../../Downloads/Week1/missingVariables/src/source.c</itemPath>
+          <itemPath>../../../Downloads/Week1/missingVariables/src/source.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="test" displayName="test" projectFiles="true">
+          <itemPath>../../../Downloads/Week1/missingVariables/test/checkhelp.c</itemPath>
+          <itemPath>../../../Downloads/Week1/missingVariables/test/test_source.c</itemPath>
+          <itemPath>../../../Downloads/Week1/missingVariables/test/tmc-check.c</itemPath>
+          <itemPath>../../../Downloads/Week1/missingVariables/test/tmc-check.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>/home/eamiller/Desktop/PacMan/test/../../../Downloads/Week1/missingVariables/Makefile</itemPath>
+      <itemPath>../../../Downloads/Week1/missingVariables/test/test</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>../../../Downloads/Week1/missingVariables</Elem>
+  </sourceRootList>
+  <projectmakefile></projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-std=c89"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>/home/eamiller/Desktop/PacMan/test/../../../Downloads/Week1/missingVariables</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>../../../Downloads/Week1/missingVariables/test/test</executablePath>
+        </makeTool>
+      </makefileType>
+      <item path="../../../Downloads/Week1/missingVariables/src/source.c"
+            ex="false"
+            tool="0"
+            flavor2="2">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="../../../Downloads/Week1/missingVariables/test/checkhelp.c"
+            ex="false"
+            tool="0"
+            flavor2="2">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="../../../Downloads/Week1/missingVariables/test/test_source.c"
+            ex="false"
+            tool="0"
+            flavor2="2">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="../../../Downloads/Week1/missingVariables/test/tmc-check.c"
+            ex="false"
+            tool="0"
+            flavor2="2">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <folder path="SourceFiles/missingVariables/src">
+        <cTool>
+          <incDir>
+            <pElem>../../../Downloads/Week1/missingVariables/src</pElem>
+            <pElem>../../../Downloads/Week1/missingVariables/test</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="SourceFiles/missingVariables/test">
+        <cTool>
+          <incDir>
+            <pElem>../../../Downloads/Week1/missingVariables/test</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+    </conf>
+  </confs>
+</configurationDescriptor>
